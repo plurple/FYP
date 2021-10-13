@@ -15,7 +15,17 @@ int main()
 				window.close();
 			}
 		}
+
+		window.clear();
+
+		sf::CircleShape creature(20, 3);
+		creature.setFillColor(sf::Color(100, 250, 50));
+		window.draw(creature);
+
+		window.display();
 	}
+
+
 
 	return 0;
 }
