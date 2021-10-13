@@ -2,16 +2,16 @@
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(800, 600), "Not Tetris");
+	sf::RenderWindow window(sf::VideoMode(800, 600), "NEAT Environment");
 
 	sf::Event event;
 
-	while (window.isOpen()) {
-
-		while (window.pollEvent(event)) {
-
-			if (event.type == sf::Event::Closed) {
-
+	while (window.isOpen()) 
+	{
+		while (window.pollEvent(event)) 
+		{
+			if (event.type == sf::Event::Closed) 
+			{
 				window.close();
 			}
 		}
