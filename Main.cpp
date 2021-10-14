@@ -12,7 +12,9 @@ int main()
 	for (int i = 0; i < 20; i++)
 	{
 		Creature creature(20, 3);
-		creature.body.move(Utility::RandomInt(0,800), Utility::RandomInt(0, 600));
+		creature.body.setPosition(Utility::RandomInt(0, 800), Utility::RandomInt(0, 600));
+		creature.eye.setPosition(creature.body.getPosition());
+		creature.eye.setOrigin(4,12);
 		creatures.push_back(creature);
 	}
 
@@ -40,6 +42,54 @@ int main()
 					}
 					break;
 				}
+				case sf::Keyboard::E:
+				{
+					for (Creature& creature : creatures)
+					{
+						creature.Rotate(1);
+					}
+					break;
+				}
+				case sf::Keyboard::Q:
+				{
+					for (Creature& creature : creatures)
+					{
+						creature.Rotate(-1);
+					}
+					break;
+				}
+				case sf::Keyboard::W:
+				{
+					for (Creature& creature : creatures)
+					{
+						creature.Move(1, 0, 0, 0);
+					}
+					break;
+				}
+				case sf::Keyboard::S:
+				{
+					for (Creature& creature : creatures)
+					{
+						creature.Move(0, 1, 0, 0);
+					}
+					break;
+				}
+				case sf::Keyboard::A:
+				{
+					for (Creature& creature : creatures)
+					{
+						creature.Move(0, 0, 1, 0);
+					}
+					break;
+				}
+				case sf::Keyboard::D:
+				{
+					for (Creature& creature : creatures)
+					{
+						creature.Move(0, 0, 0, 1);
+					}
+					break;
+				}
 				}
 			}
 			default:
@@ -52,6 +102,7 @@ int main()
 		for (Creature& creature : creatures)
 		{
 			window.draw(creature.body);
+			window.draw(creature.eye);
 		}
 
 		window.display();
