@@ -6,12 +6,12 @@
 class Button
 {
 public:
-	Button(std::string uniqueName, vector2D pos, sf::RectangleShape rectangle) 
-		: name(uniqueName), position(pos), rect(rectangle) {};
+	Button(vector2D pos, sf::RectangleShape rectangle, sf::Text tex);
 
 	std::string name;
 	vector2D position;
 	sf::RectangleShape rect;
 	sf::Color colour;
+	sf::Text text;
 };
 

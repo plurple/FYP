@@ -14,7 +14,7 @@ void StackFSM::Initialise()
 {
 	window = new sf::RenderWindow(sf::VideoMode(800, 600), "NEAT Environment");
 	event = new sf::Event;
-	ChangeState(NewEnvironment::Instance());
+	ChangeState(MainMenu::Instance());
 }
 
 void StackFSM::Cleanup()
