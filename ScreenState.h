@@ -13,7 +13,7 @@ public:
 	virtual void Cleanup() = 0;
 
 
-	virtual void HandleInput(StackFSM* screen, sf::Event* event) = 0;
+	virtual void HandleInput(StackFSM* screen, sf::RenderWindow* window, sf::Event* event) = 0;
 	virtual void Update(StackFSM* screen, sf::RenderWindow* window) = 0;
 	virtual void Render(StackFSM* screen, sf::RenderWindow* window) = 0;
 

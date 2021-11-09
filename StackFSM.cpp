@@ -57,7 +57,7 @@ void StackFSM::PopState()
 
 void StackFSM::HandleInput()
 {
-	states.back()->HandleInput(this, event);
+	states.back()->HandleInput(this, window, event);
 }
 
 void StackFSM::Update()

@@ -11,7 +11,7 @@ public:
 	void Initialise(sf::RenderWindow* window);
 	void Cleanup();
 
-	void HandleInput(StackFSM* screen, sf::Event* event);
+	void HandleInput(StackFSM* screen, sf::RenderWindow* window, sf::Event* event);
 	void Update(StackFSM* screen, sf::RenderWindow* window);
 	void Render(StackFSM* screen, sf::RenderWindow* window);
 

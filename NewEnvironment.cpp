@@ -29,7 +29,7 @@ void NewEnvironment::Initialise(sf::RenderWindow* window)
 
 }
 
-void NewEnvironment::HandleInput(StackFSM* screen, sf::Event* event)
+void NewEnvironment::HandleInput(StackFSM* screen, sf::RenderWindow* window, sf::Event* event)
 {
 	for (auto butt : buttons)
 	{

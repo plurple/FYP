@@ -4,6 +4,7 @@
 #include "Button.h"
 #include "NewEnvironment.h"
 
+
 MainMenu MainMenu::menu;
 
 MainMenu::~MainMenu()
@@ -18,14 +19,30 @@ void MainMenu::Cleanup()
 
 void MainMenu::Initialise(sf::RenderWindow* window)
 {
-	std::shared_ptr <Button> newButton = std::make_shared<Button>(vector2D(250, 250), sf::RectangleShape(sf::Vector2f(350, 50)), sf::Text("New Environment", font, 40));
+	std::shared_ptr <Button> newButton = std::make_shared<Button>(vector2D(250, 250),
+		sf::RectangleShape(sf::Vector2f(350, 50)), sf::Text("New Environment", font, 40));
+
 	buttons.push_back(newButton);
 }
 
-void MainMenu::HandleInput(StackFSM* screen, sf::Event* event)
+void MainMenu::HandleInput(StackFSM* screen, sf::RenderWindow* window, sf::Event* event)
 {
 	for (auto butt : buttons)
 	{
+		sf::Vector2i mousePos = sf::Mouse::getPosition(*window);
+		if (butt->Hover(vector2D(mousePos.x, mousePos.y)))
+		{
+			butt->ChangeColour(sf::Color::Red);
+			if (event->type == sf::Event::MouseButtonPressed)
+			{
+				if (event->mouseButton.button == sf::Mouse::Left)
+				{
+					screen->ChangeState(NewEnvironment::Instance());
+				}
+			}
+		}
+		else
+			butt->ChangeColour(sf::Color::Cyan);
 	}
 }
 
@@ -48,3 +65,5 @@ void MainMenu::Render(StackFSM* screen, sf::RenderWindow* window)
 
 	window->display();
 }
+
+
