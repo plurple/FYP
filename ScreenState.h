@@ -16,6 +16,7 @@ public:
 	virtual void HandleInput(StackFSM* screen, sf::RenderWindow* window, sf::Event* event) = 0;
 	virtual void Update(StackFSM* screen, sf::RenderWindow* window) = 0;
 	virtual void Render(StackFSM* screen, sf::RenderWindow* window) = 0;
+	void ButtonClicked(StackFSM* screen, sf::RenderWindow* window, sf::Event* event, int buttonID);
 
 	void ChangeState(StackFSM* screen, ScreenState* state) { screen->ChangeState(state); }
 

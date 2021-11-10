@@ -14,6 +14,7 @@ public:
 	void HandleInput(StackFSM* screen, sf::RenderWindow* window, sf::Event* event);
 	void Update(StackFSM* screen, sf::RenderWindow* window);
 	void Render(StackFSM* screen, sf::RenderWindow* window);
+	void ButtonClicked(StackFSM* screen, sf::RenderWindow* window, sf::Event* event, int buttonID);
 
 	static NewEnvironment* Instance() { return &environment; }
 

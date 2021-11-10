@@ -3,8 +3,8 @@
 
 
 
-Button::Button(vector2D pos, sf::RectangleShape rectangle, sf::Text tex)
-	: position(pos), rect(rectangle) , text(tex)
+Button::Button(vector2D pos, sf::RectangleShape rectangle, sf::Text tex, int id)
+	: position(pos), rect(rectangle) , text(tex), ID(id)
 {
 	name = text.getString();
 	rect.setPosition(position.X, position.Y);

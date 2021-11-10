@@ -4,6 +4,11 @@
 #include "Button.h"
 #include "NewEnvironment.h"
 
+enum class Buttons
+{
+	NEWENVIRONMENT,
+	EXIT
+};
 
 MainMenu MainMenu::menu;
 
@@ -19,10 +24,15 @@ void MainMenu::Cleanup()
 
 void MainMenu::Initialise(sf::RenderWindow* window)
 {
-	std::shared_ptr <Button> newButton = std::make_shared<Button>(vector2D(250, 250),
-		sf::RectangleShape(sf::Vector2f(350, 50)), sf::Text("New Environment", font, 40));
+	std::shared_ptr <Button> newEnvironmentButton = std::make_shared<Button>(vector2D(260, 250),
+		sf::RectangleShape(sf::Vector2f(325, 50)), sf::Text("New Environment", font, 40),
+		static_cast<int>(Buttons::NEWENVIRONMENT));
+	buttons.push_back(newEnvironmentButton);
 
-	buttons.push_back(newButton);
+	std::shared_ptr <Button> exitButton = std::make_shared<Button>(vector2D(375, 300),
+		sf::RectangleShape(sf::Vector2f(75, 50)), sf::Text("Exit", font, 40),
+		static_cast<int>(Buttons::EXIT));
+	buttons.push_back(exitButton);
 }
 
 void MainMenu::HandleInput(StackFSM* screen, sf::RenderWindow* window, sf::Event* event)
@@ -37,7 +47,8 @@ void MainMenu::HandleInput(StackFSM* screen, sf::RenderWindow* window, sf::Event
 			{
 				if (event->mouseButton.button == sf::Mouse::Left)
 				{
-					screen->ChangeState(NewEnvironment::Instance());
+					ButtonClicked(screen, window, event, butt->ID);
+					return;
 				}
 			}
 		}
@@ -67,3 +78,17 @@ void MainMenu::Render(StackFSM* screen, sf::RenderWindow* window)
 }
 
 
+void MainMenu::ButtonClicked(StackFSM* screen, sf::RenderWindow* window, sf::Event* event, int buttonID)
+{
+	switch (static_cast<Buttons>(buttonID))
+	{
+	case Buttons::NEWENVIRONMENT:
+		screen->ChangeState(NewEnvironment::Instance());
+		break;
+	case Buttons::EXIT:
+		window->close();
+		break;
+	default:
+		break;
+	}
+}

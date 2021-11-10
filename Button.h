@@ -7,7 +7,7 @@
 class Button
 {
 public:
-	Button(vector2D pos, sf::RectangleShape rectangle, sf::Text tex);
+	Button(vector2D pos, sf::RectangleShape rectangle, sf::Text tex, int id);
 	bool Hover(vector2D mousePos);
 	void ChangeColour(sf::Color);
 
@@ -16,5 +16,6 @@ public:
 	sf::RectangleShape rect;
 	sf::Color colour;
 	sf::Text text;
+	const int ID;
 };
 
