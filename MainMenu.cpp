@@ -3,10 +3,12 @@
 #include "Vector2D.h"
 #include "Button.h"
 #include "NewEnvironment.h"
+#include "XorTest.h"
 
 enum class Buttons
 {
 	NEWENVIRONMENT,
+	XORTEST,
 	EXIT
 };
 
@@ -29,7 +31,12 @@ void MainMenu::Initialise(sf::RenderWindow* window)
 		static_cast<int>(Buttons::NEWENVIRONMENT));
 	buttons.push_back(newEnvironmentButton);
 
-	std::shared_ptr <Button> exitButton = std::make_shared<Button>(vector2D(375, 300),
+	std::shared_ptr <Button> newXorButton = std::make_shared<Button>(vector2D(335, 300),
+		sf::RectangleShape(sf::Vector2f(150, 50)), sf::Text("Xor Test", font, 40),
+		static_cast<int>(Buttons::XORTEST));
+	buttons.push_back(newXorButton);
+
+	std::shared_ptr <Button> exitButton = std::make_shared<Button>(vector2D(375, 350),
 		sf::RectangleShape(sf::Vector2f(75, 50)), sf::Text("Exit", font, 40),
 		static_cast<int>(Buttons::EXIT));
 	buttons.push_back(exitButton);
@@ -84,6 +91,9 @@ void MainMenu::ButtonClicked(StackFSM* screen, sf::RenderWindow* window, sf::Eve
 	{
 	case Buttons::NEWENVIRONMENT:
 		screen->ChangeState(NewEnvironment::Instance());
+		break;
+	case Buttons::XORTEST:
+		screen->ChangeState(XorTest::Instance());
 		break;
 	case Buttons::EXIT:
 		window->close();
